@@ -4,7 +4,8 @@ var shoesSchema = new mongoose.Schema({
     name : String,
     unitPrice: Number,
     quantity: Number,
-    size: Number,
+    size: String,
+    imageUrl: String,
     category:{type:mongoose.Schema.Types.ObjectId, ref:'Category'}
 });
 
