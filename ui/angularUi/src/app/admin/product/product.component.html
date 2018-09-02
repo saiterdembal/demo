@@ -1,0 +1,99 @@
+<app-product-image #pimg></app-product-image>
+<app-product-edit #pedit></app-product-edit>
+<h5 class="page-header">Add Product</h5>
+<hr>
+<form>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Product Name</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="product.name" type="text" class="form-control" name="name" value="">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Unit Price</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="product.unitPrice" type="text" class="form-control" name="unitPrice" placeholder="">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Quantity</label>
+    <div class="col-sm-10">
+      <input [(ngModel)]="product.quantity" type="text" class="form-control" name="quantity" placeholder="">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Size</label>
+    <div class="col-sm-10">
+      <input   [(ngModel)]="product.size" type="text" class="form-control" name="size" placeholder="">
+    </div>
+  </div>
+
+  <div class="form-group row d-none">
+    <label class="col-sm-2 col-form-label">Defaul Image Url</label>
+    <div class="col-sm-10">
+      <input  [(ngModel)]="product.defaultImageUrl" type="text" class="form-control" name="defaultImageUrl" >
+    </div> 
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Category</label>
+    <div class="col-sm-10">
+      <select name="category" class="form-control" [(ngModel)]="product.categoryId">
+        <option value="-1" selected>--Select--</option>
+        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+      </select>
+    </div>
+  </div>
+ 
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-10">
+      <button (click)="addProduct(product)" type="submit" class="btn btn-success">Add Product</button>
+    </div>
+  </div>
+</form>
+<table class="mt-5">
+  <tr>
+    <td><h5 class="page-header">Product List</h5></td>
+    <td class="pl-3 "><button class="btn btn-sm btn-primary" (click)="getProductsAll()"><i class="fas fa-sync-alt"></i> Refresh</button></td>
+  </tr>
+</table>
+<table class="table" style="font-size:13px;">
+  <thead>
+    <tr>
+      
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Size</th>
+      <th>İmage Url</th>
+      <th>Is Active ?</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      
+      <td>{{product.name}}</td>
+      <td>{{product.unitPrice}}</td>
+      <td>{{product.quantity}}</td>
+      <td>{{product.size}}</td>
+      <td>{{product.defaultImageUrl}}</td>
+      <td>{{product.isActive}}</td>
+
+
+      <td>
+        <button type="button" (click)="pedit.getProductById(product._id)" data-toggle="modal" data-target="#editModal"  class="btn btn-sm btn-dark">Edit</button>
+      </td>
+      <td>
+        <button type="button" (click)="pimg.loadImages(product._id)" data-toggle="modal" data-target="#imageModal" class="btn btn-sm btn-success">Images</button>
+      </td>
+      <td>
+        <button type="button" (click)=deleteProduct(product._id) class="btn btn-sm btn-danger">Delete</button>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>

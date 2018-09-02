@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <button type="button" data-toggle="dropdown" class="btn  btn-light  float-right btn-sm dropdown-toggle" id="dropdownMenuButton"
+    aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-shopping-cart "></i>&nbsp;
+    <span class="badge badge-light">{{totalCartItem}}</span> items - {{totalCartItemPrice |currency:'USD'}}
+
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div *ngIf="cartItems.length>0; else cartSummaryEmpty">
+    <div class="dropdown-item ItemClass" *ngFor="let item of cartItems">
+      <a (click)="removeFromCart(item.product)"><i style="cursor:pointer;"  class="fas fa-window-close"></i>&nbsp; {{item.product.name}} <strong>({{item.quantity}})</strong></a>
+    </div>
+    <div class="text-center ItemClass" >
+      <button class="mt-2 mb-2 btn btn-sm btn-light" style="width:100%;" routerLink="my-cart">go to cart</button>
+    </div>
+  </div>
+  </div>
+</div>
+
+<ng-template #cartSummaryEmpty>
+    <div class="small text-center">
+      Your Cart is Empty
+    </div>
+  
+  </ng-template>

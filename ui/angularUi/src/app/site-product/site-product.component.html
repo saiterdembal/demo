@@ -1,0 +1,31 @@
+
+<div class="div mb-3 ml-3 mt-1">
+  <input   type="text" class="form-control" placeholder="product search..." [(ngModel)]="filterText" >
+</div>
+<hr>
+<div class="div mb-3 ml-3 mt-1">
+  <nav aria-label="Page navigation" >
+    <ul class="pagination" >
+      <li class="page-item" *ngFor="let page of pager.pageList" [class.active]="page===pager.currentPage">
+        <a class="page-link" (click)="setPage(page)" >{{page}}</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="card float-left mr-3 ml-3 mb-5" *ngFor="let product of products |productFilter:filterText|slice:(pager.currentPage-1)*pager.pageSize:((pager.currentPage-1)*pager.pageSize)+pager.pageSize" style="width: 15rem;">
+  <img width="238" height="238" class="card-img-top" src="{{product.defaultImageUrl}}">
+
+  <div class="card-body bg-light">
+    <h6 class="card-title text-center">{{product.name}}</h6>
+</div>
+  <ul class="list-group list-group-flush bg-dark">
+    <li class="list-group-item "><strong><span style="color:red;">{{product.unitPrice |currency:USD}}</span></strong></li>
+    <li class="list-group-item"><strong>Quantity :</strong> {{product.quantity}}</li>
+    <li class="list-group-item"><strong>Size :</strong> {{product.size}}</li>
+  </ul>
+  <div class="card-body">
+    <button (click)="addToCart(product)" class="btn btn-danger">Add to cart</button>
+  </div>
+</div>
+<div class="clearfix"></div>

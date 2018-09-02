@@ -1,0 +1,13 @@
+
+<ul class="list-group" >
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a routerLink="product/list" class="">ALL</a>
+        <span class="badge badge-primary badge-pill"></span>
+      </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center" 
+  *ngFor="let category of categories">
+    <a routerLink="product/list/{{category._id}}" class="">{{category.name}}</a>
+    <span class="badge badge-primary badge-pill" >{{getCount(category._id)}}</span>
+  </li>
+  
+</ul>

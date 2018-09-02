@@ -1,0 +1,44 @@
+<h5 class="page-header">Your Cart</h5>
+<hr>
+
+<div *ngIf="cartItems.length>0; else EmptyCartDetail">
+<table class="table table-fluid table-responsive">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Total Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems">
+      <td>{{item.product.name}}</td>
+      <td>{{item.product.quantity}}</td>
+      <td>{{item.quantity}}</td>
+      <td>{{item.product.unitPrice}}</td>
+      <td>{{item.product.unitPrice * item.quantity |currency:'USD':true}}</td>
+      <td>
+        <button (click)="removeToCart(item.product)" class="btn btn-danger btn-sm">remove from cart</button>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="6"> <button routerLink="../shipping-detail" class="btn  btn-info" style="width:100%;">Complete Shopping</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<ng-template #EmptyCartDetail>
+<div class="bg-light  p-4">Cart is empty!</div>
+</ng-template>

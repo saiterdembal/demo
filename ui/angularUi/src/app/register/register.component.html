@@ -1,0 +1,17 @@
+<div class="container-fluid text-center bg pt-5">
+
+  <form class="form-signin">
+    
+    <h1 class="h3 mb-3 font-weight-normal">Please Sign up</h1>
+
+    <p><input type="email" [(ngModel)]="registerUser.email" name="email" class="form-control" placeholder="Email address" required autofocus></p>
+    <p><input type="password" [(ngModel)]="registerUser.password" name="password"  class="form-control" placeholder="Password" required></p>
+    <p><input type="text" [(ngModel)]="registerUser.firstName" name="firstName"  class="form-control" placeholder="First Name" required></p>
+    <p><input type="text" [(ngModel)]="registerUser.lastName" name="lastName"  class="form-control" placeholder="Last name" required></p>
+    <p><button (click)="register(registerUser)" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018 Example Shoes Shop </p>
+  </form>
+</div> 
+<div class="bg-light mt-1 border-top text-center py-4">
+  <a routerLink="" class="active">-- HOME PAGE --</a>
+</div>
